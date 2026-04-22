@@ -1,0 +1,18 @@
+/* Minimal sidebar styles */
+.sidebar {
+  width: 220px;
+  padding: 16px;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav li {
+  margin: 8px 0;
+}
+
+.sidebar a {
+  color: #007bff;
+}

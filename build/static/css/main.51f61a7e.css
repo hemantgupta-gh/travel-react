@@ -1,0 +1,95 @@
+a,
+abbr,
+acronym,
+address,
+applet,
+b,
+big,
+blockquote,
+body,
+center,
+cite,
+code,
+del,
+dfn,
+div,
+em,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+object,
+p,
+pre,
+q,
+s,
+samp,
+small,
+span,
+strike,
+strong,
+sub,
+sup,
+tt,
+u {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+.footer,
+.header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+.sidebar {
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  padding: 15px;
+}
+.widget {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #0000001a;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+.button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+.button:hover {
+  background-color: #0056b3;
+}
+/*# sourceMappingURL=main.51f61a7e.css.map*/
