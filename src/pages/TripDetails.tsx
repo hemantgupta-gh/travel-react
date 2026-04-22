@@ -27,7 +27,6 @@ const TripDetails: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
       <div className="max-w-5xl mx-auto">
-
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">

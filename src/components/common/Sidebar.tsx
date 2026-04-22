@@ -55,12 +55,8 @@ const Sidebar: React.FC = () => {
 
         {/* User Info */}
         <div>
-          <div style={{ fontWeight: 600 }}>
-            {user?.email ?? 'User'}
-          </div>
-          <div style={{ fontSize: 12, color: '#777' }}>
-            Logged in
-          </div>
+          <div style={{ fontWeight: 600 }}>{user?.email ?? 'User'}</div>
+          <div style={{ fontSize: 12, color: '#777' }}>Logged in</div>
         </div>
       </div>
 

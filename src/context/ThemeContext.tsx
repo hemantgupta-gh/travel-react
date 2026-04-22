@@ -13,7 +13,9 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     return localStorage.getItem('theme') === 'dark';
   });

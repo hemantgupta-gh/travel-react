@@ -49,12 +49,13 @@ const Planner: React.FC = () => {
       setLoadingSuggestions(true);
       try {
         const resp = await getCoordinates(query);
-        const items = resp?.data?.map((it: any) => ({
-          id: it.id || `${it.latitude}-${it.longitude}`,
-          name: it.city || it.name || query,
-          country: it.country,
-          countryCode: (it.countryCode || '').toUpperCase(),
-        })) || [];
+        const items =
+          resp?.data?.map((it: any) => ({
+            id: it.id || `${it.latitude}-${it.longitude}`,
+            name: it.city || it.name || query,
+            country: it.country,
+            countryCode: (it.countryCode || '').toUpperCase(),
+          })) || [];
 
         if (!cancelled) setSuggestions(items);
       } catch (e: any) {
@@ -119,7 +120,6 @@ const Planner: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
       <div className="max-w-4xl mx-auto">
-
         {/* Header */}
         <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">
           ✈️ Travel Planner
@@ -192,14 +192,15 @@ const Planner: React.FC = () => {
             {/* Country */}
             {countryInfo && (
               <div className="mt-4 flex gap-4 items-center">
-                <img
-                  src={countryInfo.flags?.png}
-                  className="w-20 rounded"
-                />
+                <img src={countryInfo.flags?.png} className="w-20 rounded" />
                 <div className="text-sm text-gray-600 dark:text-gray-300">
-                  <div><strong>{countryInfo.name?.common}</strong></div>
+                  <div>
+                    <strong>{countryInfo.name?.common}</strong>
+                  </div>
                   <div>Capital: {countryInfo.capital?.[0]}</div>
-                  <div>Population: {countryInfo.population?.toLocaleString()}</div>
+                  <div>
+                    Population: {countryInfo.population?.toLocaleString()}
+                  </div>
                 </div>
               </div>
             )}

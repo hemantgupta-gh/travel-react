@@ -32,7 +32,8 @@ const Home: React.FC = () => {
           Smart Travel Planner ✈️
         </h1>
         <p className="text-gray-600 dark:text-gray-400 mt-2">
-          Plan your trips, explore destinations, and make unforgettable memories.
+          Plan your trips, explore destinations, and make unforgettable
+          memories.
         </p>
       </div>
 
