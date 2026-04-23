@@ -1,14 +1,14 @@
-# Smart Travel Planner Dashboard
+# Smart Travel Planner
 
 ## Overview
 
-The Smart Travel Planner Dashboard is a React-based application designed to help users plan their travel itineraries efficiently. It provides a user-friendly interface for searching destinations, viewing weather information, managing trips, and receiving personalized recommendations.
+Smart Travel Planner is a React-based application designed to help users plan their travel itineraries efficiently. It provides a user-friendly interface for searching destinations, viewing weather information, and managing trips.
 
 ## Features
 
-- **User Authentication**: Secure login and registration functionality.
+- **User Authentication**: Secure login functionality.
 - **Trip Planning**: Users can search for destinations, view weather data, and create itineraries.
-- **Interactive Dashboard**: A dashboard layout that includes a map, itinerary details, booking options, and recommendations.
+- **Interactive Dashboard**: A dashboard layout that includes a stats, itinerary details, booking options, and recommendations.
 - **Responsive Design**: The application is designed to be responsive and user-friendly on various devices.
 - **Theme Management**: Users can switch between light and dark themes.
 
@@ -16,7 +16,7 @@ The Smart Travel Planner Dashboard is a React-based application designed to help
 
 The project is organized into several key directories and files:
 
-- **public/**: Contains static files such as `index.html` and `manifest.json`.
+- **public/**: Contains static files such as `index.html`, `_redirects_` and `manifest.json`.
 - **src/**: The main source code for the application, including components, pages, hooks, services, context, and styles.
 - **store/**: Contains Redux store setup and slices for state management.
 - **tests/**: Includes unit tests for components.
@@ -32,11 +32,11 @@ The project is organized into several key directories and files:
 
 1. Clone the repository:
    ```
-   git clone <repository-url>
+   git clone https://github.com/hemantgupta-gh/travel-react
    ```
 2. Navigate to the project directory:
    ```
-   cd smart-travel-planner-dashboard
+   cd travel-react
    ```
 3. Install dependencies:
    ```

@@ -4,54 +4,69 @@ import { useNavigate } from 'react-router-dom';
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Simple mock login (replace with API later)
     if (username === 'admin' && password === 'admin') {
       localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('username', username);
       navigate('/');
     } else {
-      alert('Invalid credentials');
+      setError('Invalid username or password');
     }
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: '100px auto' }}>
-      <h2>Login</h2>
+    <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-blue-500 to-indigo-600 dark:from-gray-900 dark:to-gray-800">
+      {/* Card */}
+      <div className="bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-xl w-full max-w-md">
+        {/* Title */}
+        <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-800 dark:text-white">
+          Welcome Back!
+        </h2>
+        <p className="text-center text-sm sm:text-base text-gray-500 dark:text-gray-400 mt-2">
+          Login to your account
+        </p>
 
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          style={{ width: '100%', padding: 8, marginBottom: 10 }}
-        />
+        {/* Error */}
+        {error && (
+          <div className="mt-4 text-sm text-red-500 text-center">{error}</div>
+        )}
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ width: '100%', padding: 8, marginBottom: 10 }}
-        />
+        {/* Form */}
+        <form onSubmit={handleLogin} className="mt-5 sm:mt-6 space-y-4">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-3 text-sm sm:text-base rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+          />
 
-        <button
-          type="submit"
-          style={{
-            width: '100%',
-            padding: 10,
-            background: '#007bff',
-            color: '#fff',
-            border: 'none',
-          }}
-        >
-          Login
-        </button>
-      </form>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 text-sm sm:text-base rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+          />
+
+          <button
+            type="submit"
+            className="w-full py-2.5 sm:py-3 text-sm sm:text-base bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
+          >
+            Login
+          </button>
+        </form>
+
+        {/* Footer */}
+        <p className="text-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-5 sm:mt-6">
+          Demo: admin / admin
+        </p>
+      </div>
     </div>
   );
 };

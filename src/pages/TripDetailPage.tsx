@@ -102,18 +102,45 @@ const TripDetailPage: React.FC = () => {
               🌦 Weather
             </h2>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-              <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                🌡 {weather.main?.temp}°C
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {/* Temp */}
+              <div className="p-4 rounded-xl bg-gray-100 dark:bg-gray-700 text-center">
+                <div className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {weather.main?.temp}°C
+                </div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  Temperature
+                </div>
               </div>
-              <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                🤒 {weather.main?.feels_like}°C
+
+              {/* Feels like */}
+              <div className="p-4 rounded-xl bg-gray-100 dark:bg-gray-700 text-center">
+                <div className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {weather.main?.feels_like}°C
+                </div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  Feels Like
+                </div>
               </div>
-              <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                💧 {weather.main?.humidity}%
+
+              {/* Humidity */}
+              <div className="p-4 rounded-xl bg-gray-100 dark:bg-gray-700 text-center">
+                <div className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {weather.main?.humidity}%
+                </div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  Humidity
+                </div>
               </div>
-              <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                {weather.weather?.[0]?.description}
+
+              {/* Description */}
+              <div className="p-4 rounded-xl bg-gray-100 dark:bg-gray-700 text-center">
+                <div className="text-2xl font-bold text-gray-800 dark:text-white capitalize">
+                  {weather.weather?.[0]?.description}
+                </div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  Condition
+                </div>
               </div>
             </div>
           </div>

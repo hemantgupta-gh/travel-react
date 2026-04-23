@@ -4,7 +4,6 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Home from '../pages/Home';
 import Planner from '../pages/Planner';
 import TripDetails from '../pages/TripDetails';
-import Settings from '../pages/Settings';
 import TripDetailPage from '../pages/TripDetailPage';
 import Login from '../pages/Login';
 import DashboardLayout from '../components/dashboard/DashboardLayout';
@@ -53,15 +52,6 @@ const AppRoutes: React.FC = () => {
         element={
           <ProtectedLayout>
             <TripDetails />
-          </ProtectedLayout>
-        }
-      />
-
-      <Route
-        path="/settings"
-        element={
-          <ProtectedLayout>
-            <Settings />
           </ProtectedLayout>
         }
       />

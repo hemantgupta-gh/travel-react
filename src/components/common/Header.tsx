@@ -1,47 +1,176 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 
 const Header: React.FC = () => {
   const isAuth = localStorage.getItem('isLoggedIn');
   const { isDarkMode, toggleTheme } = useTheme();
 
-  return (
-    <header className="bg-green-500 dark:bg-gray-900 text-white px-4 py-3 flex justify-between items-center">
-      <h1 className="text-xl font-bold">Smart Travel Planner</h1>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-      <nav>
-        <ul className="flex items-center gap-4">
+  const linkClass = 'text-sm font-medium px-3 py-2 rounded-md transition';
+  const activeClass = 'bg-blue-500 text-white';
+
+  return (
+    <header className="sticky top-0 z-50 backdrop-blur bg-white/80 dark:bg-gray-900/90 border-b border-gray-200 dark:border-gray-700">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3">
+        {/* Logo */}
+        <h1 className="text-base sm:text-lg font-bold text-gray-800 dark:text-white">
+          ✈️ Smart Travel Planner
+        </h1>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-3">
           {isAuth && (
             <>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/planner">Planner</Link>
-              </li>
-              <li>
-                <Link to="/trip-details">Saved Trips</Link>
-              </li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `${linkClass} ${
+                    isActive
+                      ? activeClass
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`
+                }
+              >
+                Home
+              </NavLink>
+
+              <NavLink
+                to="/planner"
+                className={({ isActive }) =>
+                  `${linkClass} ${
+                    isActive
+                      ? activeClass
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`
+                }
+              >
+                Planner
+              </NavLink>
+
+              <NavLink
+                to="/trip-details"
+                className={({ isActive }) =>
+                  `${linkClass} ${
+                    isActive
+                      ? activeClass
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`
+                }
+              >
+                Trips
+              </NavLink>
             </>
           )}
 
           {!isAuth && (
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+            <NavLink
+              to="/login"
+              className="text-sm font-medium text-blue-600 hover:underline"
+            >
+              Login
+            </NavLink>
           )}
 
-          <li>
-            <button
-              onClick={toggleTheme}
-              className="ml-2 px-3 py-1 rounded bg-white text-black dark:bg-gray-700 dark:text-white"
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="ml-2 flex items-center gap-2 px-3 py-2 rounded-full 
+                       border border-gray-300 dark:border-gray-600
+                       bg-white dark:bg-gray-800 
+                       text-gray-800 dark:text-white
+                       shadow-sm hover:shadow-md
+                       hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+          >
+            <span>{isDarkMode ? '☀️' : '🌙'}</span>
+            <span className="hidden sm:inline">
+              {isDarkMode ? 'Light' : 'Dark'}
+            </span>
+          </button>
+        </nav>
+
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden text-gray-700 dark:text-white text-xl"
+        >
+          {menuOpen ? '✖' : '☰'}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden px-4 pb-4 space-y-2 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+          {isAuth && (
+            <>
+              <NavLink
+                to="/"
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  `block ${linkClass} ${
+                    isActive
+                      ? activeClass
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`
+                }
+              >
+                Home
+              </NavLink>
+
+              <NavLink
+                to="/planner"
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  `block ${linkClass} ${
+                    isActive
+                      ? activeClass
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`
+                }
+              >
+                Planner
+              </NavLink>
+
+              <NavLink
+                to="/trip-details"
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  `block ${linkClass} ${
+                    isActive
+                      ? activeClass
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`
+                }
+              >
+                Trips
+              </NavLink>
+            </>
+          )}
+
+          {!isAuth && (
+            <NavLink
+              to="/login"
+              onClick={() => setMenuOpen(false)}
+              className="block text-sm font-medium text-blue-600"
             >
-              {isDarkMode ? '☀️ Light' : '🌙 Dark'}
-            </button>
-          </li>
-        </ul>
-      </nav>
+              Login
+            </NavLink>
+          )}
+
+          {/* Theme Toggle Mobile */}
+          <button
+            onClick={toggleTheme}
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-full 
+                       border border-gray-300 dark:border-gray-600
+                       bg-white dark:bg-gray-800 
+                       text-gray-800 dark:text-white
+                       hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+          >
+            {isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+          </button>
+        </div>
+      )}
     </header>
   );
 };

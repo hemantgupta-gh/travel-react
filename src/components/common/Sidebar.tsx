@@ -1,81 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Mock type for user (adjust based on your actual AuthContext)
-interface User {
-  email?: string;
-}
-
-// Mock hook (replace with your real import)
-const useAuth = (): { user: User | null } => {
-  return {
-    user: { email: 'user@example.com' }, // replace with real context
-  };
-};
-
 const Sidebar: React.FC = () => {
-  const { user } = useAuth();
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+
+  const username = localStorage.getItem('username') || 'Admin';
+  const userInitial = username.charAt(0).toUpperCase();
 
   const logout = () => {
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
     navigate('/login');
   };
 
-  const userInitial = user?.email?.charAt(0).toUpperCase() || 'U';
-
   return (
-    <div className="sidebar" style={{ padding: 20 }}>
-      {/* Profile Section */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-          marginBottom: 20,
-        }}
-      >
-        {/* Avatar */}
-        <div
-          style={{
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            background: '#007bff',
-            color: '#fff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: 'bold',
-            fontSize: 16,
-          }}
-        >
-          {userInitial}
-        </div>
-
-        {/* User Info */}
-        <div>
-          <div style={{ fontWeight: 600 }}>{user?.email ?? 'User'}</div>
-          <div style={{ fontSize: 12, color: '#777' }}>Logged in</div>
-        </div>
-      </div>
-
-      {/* Logout Button */}
+    <>
+      {/* User Icon Toggle */}
       <button
-        onClick={logout}
-        style={{
-          width: '100%',
-          padding: '8px 10px',
-          background: 'red',
-          color: '#fff',
-          border: 'none',
-          borderRadius: 4,
-          cursor: 'pointer',
-        }}
+        onClick={() => setOpen(true)}
+        className="
+          md:hidden fixed left-2 top-1/2 -translate-y-1/2 z-50
+          w-10 h-10 rounded-full
+          bg-blue-600 text-white
+          flex items-center justify-center font-bold
+          shadow-lg
+        "
       >
-        Logout
+        {userInitial}
       </button>
-    </div>
+
+      {/* Overlay */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          onClick={() => setOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside
+        className={`
+          fixed top-0 left-0 z-50
+          w-64 h-full
+          bg-white dark:bg-gray-900
+          border-r border-gray-200 dark:border-gray-700
+          p-5 flex flex-col
+          transform transition-transform duration-300
+          ${open ? 'translate-x-0' : '-translate-x-full'}
+          md:translate-x-0 md:static md:flex
+        `}
+      >
+        {/* Close Button (Mobile only) */}
+        <button
+          onClick={() => setOpen(false)}
+          className="md:hidden absolute top-4 right-4 text-gray-600 dark:text-gray-300 text-xl"
+        >
+          ✕
+        </button>
+
+        {/* Profile */}
+        <div className="flex items-center gap-3 mb-6 mt-4 md:mt-0">
+          <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
+            {userInitial}
+          </div>
+          <div>
+            <div className="text-sm font-semibold text-gray-800 dark:text-white">
+              {username}
+            </div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">
+              Logged in
+            </div>
+          </div>
+        </div>
+
+        {/* Logout */}
+        <button
+          onClick={logout}
+          className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
+        >
+          Logout
+        </button>
+      </aside>
+    </>
   );
 };
 

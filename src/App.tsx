@@ -4,13 +4,15 @@ import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import './styles/globals.css';
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <AppRoutes />
-      </ThemeProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+          <AppRoutes />
+        </div>
+      </AuthProvider>
+    </ThemeProvider>
   );
 };
 
