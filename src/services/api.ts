@@ -38,7 +38,7 @@ export const fetchCountryData = async (countryCode: string) => {
   try {
     // If you later add a specific country API key, handle it here. For now use API_BASE_URL.
     const response = await axios.get(
-      'https://restcountries.com/v3.1/alpha/' + countryCode,
+      'https://restcountries.com/v3.1/alpha?codes=' + countryCode,
       {
         //params: { code: countryCode },
       }
