@@ -16,19 +16,21 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      {/* User Icon Toggle */}
-      <button
-        onClick={() => setOpen(true)}
-        className="
-          md:hidden fixed left-2 top-1/2 -translate-y-1/2 z-50
-          w-10 h-10 rounded-full
-          bg-blue-600 text-white
-          flex items-center justify-center font-bold
-          shadow-lg
-        "
-      >
-        {userInitial}
-      </button>
+      {/* ✅ User Icon Toggle (hidden when open) */}
+      {!open && (
+        <button
+          onClick={() => setOpen(true)}
+          className="
+            md:hidden fixed left-2 top-1/2 -translate-y-1/2 z-0
+            w-10 h-10 rounded-full
+            bg-blue-600 text-white
+            flex items-center justify-center font-bold
+            shadow-lg
+          "
+        >
+          {userInitial}
+        </button>
+      )}
 
       {/* Overlay */}
       {open && (
@@ -41,7 +43,7 @@ const Sidebar: React.FC = () => {
       {/* Sidebar */}
       <aside
         className={`
-          fixed top-0 left-0 z-50
+          fixed top-0 left-0 z-50 md:z-0
           w-64 h-full
           bg-white dark:bg-gray-900
           border-r border-gray-200 dark:border-gray-700
