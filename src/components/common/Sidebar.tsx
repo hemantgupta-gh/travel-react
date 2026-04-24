@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      {/* ✅ User Icon Toggle (hidden when open) */}
+      {/* User Icon Toggle (hidden when open) */}
       {!open && (
         <button
           onClick={() => setOpen(true)}

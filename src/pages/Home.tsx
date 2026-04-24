@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Trip = {
   id: number;
@@ -10,7 +11,7 @@ type Trip = {
 
 const Home: React.FC = () => {
   const [trips, setTrips] = useState<Trip[]>([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const stored = localStorage.getItem('trips');
     if (stored) {
@@ -96,6 +97,12 @@ const Home: React.FC = () => {
                   <p>📅 {trip.startDate}</p>
                   <p>➡️ {trip.endDate}</p>
                 </div>
+                <button
+                  onClick={() => navigate(`/trip/${trip.id}`)}
+                  className="flex-1 bg-blue-600 text-white mt-4 px-2 rounded-lg hover:bg-blue-700 transition"
+                >
+                  View details
+                </button>
               </div>
             ))}
           </div>

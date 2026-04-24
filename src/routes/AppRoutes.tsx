@@ -8,12 +8,12 @@ import TripDetailPage from '../pages/TripDetailPage';
 import Login from '../pages/Login';
 import DashboardLayout from '../components/dashboard/DashboardLayout';
 
-// 🔒 Auth check (replace with context if needed)
+// Auth check (replace with context if needed)
 const isAuthenticated = () => {
   return localStorage.getItem('isLoggedIn');
 };
 
-// 🔒 Protected wrapper
+// Protected wrapper
 const ProtectedLayout = ({ children }: { children: JSX.Element }) => {
   if (!isAuthenticated()) {
     return <Navigate to="/login" replace />;
@@ -25,10 +25,10 @@ const ProtectedLayout = ({ children }: { children: JSX.Element }) => {
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      {/* ✅ Public Route */}
+      {/* Public Route */}
       <Route path="/login" element={<Login />} />
 
-      {/* 🔒 Protected Routes */}
+      {/* Protected Routes */}
       <Route
         path="/"
         element={
